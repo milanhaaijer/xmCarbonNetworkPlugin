@@ -1,5 +1,8 @@
-C:\Users\Gebruiker\xmPlugin\src\main\java\me\carbonnetwork\xmplugin\commands\CommandKit.java
-C:\Users\Gebruiker\xmPlugin\src\main\java\me\carbonnetwork\xmplugin\XmPlugin.java
-C:\Users\Gebruiker\xmPlugin\src\main\java\me\carbonnetwork\xmplugin\recipes\DragonEgg.java
-C:\Users\Gebruiker\xmPlugin\src\main\java\me\carbonnetwork\xmplugin\commands\ChatColorCommand.java
-C:\Users\Gebruiker\xmPlugin\src\main\java\me\carbonnetwork\xmplugin\commands\FeedCommand.java
+C:\Users\Gebruiker\xmCarbonNetworkPlugin\src\main\java\me\carbonnetwork\xmplugin\commands\CommandKit.java
+C:\Users\Gebruiker\xmCarbonNetworkPlugin\src\main\java\me\carbonnetwork\xmplugin\XmPlugin.java
+C:\Users\Gebruiker\xmCarbonNetworkPlugin\src\main\java\me\carbonnetwork\xmplugin\commands\ChatColorCommand.java
+C:\Users\Gebruiker\xmCarbonNetworkPlugin\src\main\java\me\carbonnetwork\xmplugin\commands\FeedCommand.java
+C:\Users\Gebruiker\xmCarbonNetworkPlugin\src\main\java\me\carbonnetwork\xmplugin\npc\RemoveNPCCommand.java
+C:\Users\Gebruiker\xmCarbonNetworkPlugin\src\main\java\me\carbonnetwork\xmplugin\npc\SpawnNPCCommand.java
+C:\Users\Gebruiker\xmCarbonNetworkPlugin\src\main\java\me\carbonnetwork\xmplugin\npc\NPCManager.java
+C:\Users\Gebruiker\xmCarbonNetworkPlugin\src\main\java\me\carbonnetwork\xmplugin\recipes\DragonEgg.java
