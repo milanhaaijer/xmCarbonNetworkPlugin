@@ -1,7 +1,8 @@
 name: xmPlugin
-version: '1.0.0-dev+b61'
+version: '1.0.0-dev+b94'
 main: me.carbonnetwork.xmplugin.XmPlugin
 api-version: '1.16'
+depend: [Citizens]
 
 commands:
   kit:

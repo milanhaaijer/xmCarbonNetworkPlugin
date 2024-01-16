@@ -2,6 +2,7 @@ name: xmPlugin
 version: '${project.version}'
 main: me.carbonnetwork.xmplugin.XmPlugin
 api-version: '1.16'
+depend: [Citizens]
 
 commands:
   kit:

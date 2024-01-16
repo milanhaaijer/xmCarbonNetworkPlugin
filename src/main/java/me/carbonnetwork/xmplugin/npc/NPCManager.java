@@ -7,12 +7,27 @@ import net.citizensnpcs.api.npc.NPC;
 import net.citizensnpcs.api.npc.NPCRegistry;
 import net.citizensnpcs.api.trait.trait.Owner;
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.ItemStack;
+
+import java.util.*;
 
 public class NPCManager implements Listener {
 
+    private final Map<Player, Long> cooldowns = new HashMap<>();
+    private final Map<UUID, Boolean> playerDialogCompleted = new HashMap<>();
+
+    private final Map<String, Boolean> Task1Completed = new HashMap<>();
+    private final Map<String, Boolean> Task2Completed = new HashMap<>();
+
+    private final long cooldownDuration = 15000; // (adjust as needed)
+
     private final XmPlugin plugin;
+
 
     public NPCManager(XmPlugin plugin) {
         this.plugin = plugin;
@@ -36,12 +51,41 @@ public class NPCManager implements Listener {
 
     @EventHandler
     public void onRightClick(NPCRightClickEvent event) {
+        Player player = event.getClicker();
         NPC npc = event.getNPC();
 
-        // Check if the right-clicked NPC is the one you want to handle
-        int yourNPCId = 3;
-        if (npc.getId() == yourNPCId) {
-            event.getClicker().sendMessage("§e[NPC] §ddusdavid§f: He daar schattig douwdruppeltje!");
+        if (npc.getId() != 3) return;
+
+        if (!Task1Completed.containsKey(player.getUniqueId().toString())) {
+
+            player.sendMessage("§e[NPC] §d§ldusdavid §r§7> Welkom op de server, " + player.getName() + "!");
+
+            Bukkit.getScheduler().runTaskLater(plugin, () -> {
+                player.sendMessage("§e[NPC] §d§ldusdavid §r§7> Veel plezier op CarbonNetwork!");
+            }, 60);
+            Task1Completed.put(player.getUniqueId().toString(), true);
+
+        } else {
+
+            Material requiredItem = Material.DIAMOND;
+            int requiredAmount = 32;
+
+            ItemStack itemInHand = player.getInventory().getItemInMainHand();
+
+            if (itemInHand.getType() == requiredItem && itemInHand.getAmount() >= requiredAmount) {
+                itemInHand.setAmount(itemInHand.getAmount() - requiredAmount);
+
+                player.sendMessage("§e[NPC] §d§ldusdavid §r§7> Bedankt voor de diamonds!");
+                player.playSound(player.getLocation(), "entity.player.burp", 1.0f, 1.0f);
+            } else {
+                player.sendMessage("§e[NPC] §d§ldusdavid §r§7> Breng mij 32 diamonds alsjeblieft!");
+            }
         }
+    }
+
+    private boolean hasRequiredItem(Player player, Material requiredItem, int requiredAmount) {
+        ItemStack itemInHand = player.getInventory().getItemInMainHand();
+
+        return itemInHand.getType() == requiredItem && itemInHand.getAmount() == requiredAmount;
     }
 }

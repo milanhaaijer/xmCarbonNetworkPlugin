@@ -6,7 +6,7 @@
 
     <groupId>me.carbonnetwork</groupId>
     <artifactId>xmPlugin</artifactId>
-    <version>1.0.0-dev+b61</version>
+    <version>1.0.0-dev+b94</version>
     <packaging>jar</packaging>
 
     <name>xmPlugin</name>
