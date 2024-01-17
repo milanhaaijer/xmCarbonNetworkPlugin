@@ -18,13 +18,9 @@ import java.util.*;
 
 public class NPCManager implements Listener {
 
-    private final Map<Player, Long> cooldowns = new HashMap<>();
-    private final Map<UUID, Boolean> playerDialogCompleted = new HashMap<>();
 
     private final Map<String, Boolean> Task1Completed = new HashMap<>();
     private final Map<String, Boolean> Task2Completed = new HashMap<>();
-
-    private final long cooldownDuration = 15000; // (adjust as needed)
 
     private final XmPlugin plugin;
 
