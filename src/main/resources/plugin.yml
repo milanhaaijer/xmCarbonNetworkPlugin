@@ -20,3 +20,24 @@ commands:
   removenpc:
     description: Remove an NPC
     usage: /<command>
+  givecoins1:
+    description: Give player 1 coin cash
+    usage: /<command>
+  givecoins10:
+    description: Give player 10 coins cash
+    usage: /<command>
+  givecoins100:
+    description: Give player 100 coins cash
+    usage: /<command>
+  givecoins1000:
+    description: Give player 1000 coins cash
+    usage: /<command>
+  givecoins10000:
+    description: Give player 10000 coins cash
+    usage: /<command>
+  givecoins100000:
+    description: Give player 100000 coins cash
+    usage: /<command>
+  givecoins1000000:
+    description: Give player 1000000 coins cash
+    usage: /<command>
