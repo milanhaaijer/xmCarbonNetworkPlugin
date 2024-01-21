@@ -1,5 +1,6 @@
 package me.carbonnetwork.xmplugin.Bank;
 
+import me.carbonnetwork.xmplugin.XmPlugin;
 import me.carbonnetwork.xmplugin.api.APIRequest;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -22,9 +23,9 @@ public class DepositGUI implements Listener {
     public static ItemStack specificItem;
     public static ItemStack returnItem;
 
-    public static void open(Player player) {
+    public static void open(Player player, XmPlugin plugin) {
 
-        String response = new APIRequest().sendGETRequest("http://api.carbonnetwork.net/players/find/?query=" + player.getName());
+        String response = new APIRequest(plugin).sendGETRequest("http://api.carbonnetwork.net/players/find/?query=" + player.getName());
         if (response.startsWith("{")) {
             JSONObject json = new JSONObject(response);
             JSONArray data = json.getJSONArray("data");

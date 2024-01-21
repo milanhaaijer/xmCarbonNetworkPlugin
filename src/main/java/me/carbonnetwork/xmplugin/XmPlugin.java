@@ -1,6 +1,7 @@
 package me.carbonnetwork.xmplugin;
 
 import me.carbonnetwork.xmplugin.Bank.blockListener;
+import me.carbonnetwork.xmplugin.api.APIRequest;
 import me.carbonnetwork.xmplugin.commands.moneycommands.*;
 import me.carbonnetwork.xmplugin.npc.*;
 import me.carbonnetwork.xmplugin.npc.Factory.NPCListener;
@@ -11,9 +12,9 @@ import me.carbonnetwork.xmplugin.commands.FeedCommand;
 import me.carbonnetwork.xmplugin.commands.CommandKit;
 import me.carbonnetwork.xmplugin.commands.ChatColorCommand;
 
-
-
 public final class XmPlugin extends JavaPlugin {
+
+    public String APIToken = null;
 
     @Override
     public void onEnable() {
@@ -47,12 +48,22 @@ public final class XmPlugin extends JavaPlugin {
         NPCNotch NPCNotch = new NPCNotch(this);
         NPCNotch.setupNPC();
 
+        new APIRequest(this).login();
+
     }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
         getServer().removeRecipe(new NamespacedKey(this, "customDragonEgg"));
+    }
+
+    public String getAPIToken() {
+        return APIToken;
+    }
+
+    public void setAPIToken(String APIToken) {
+        this.APIToken = APIToken;
     }
 
 }

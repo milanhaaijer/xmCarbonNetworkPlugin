@@ -36,7 +36,7 @@ public class blockListener implements Listener {
                 e.setCancelled(true);
 
                 Player player = e.getPlayer();
-                BankGUI.open(player);
+                BankGUI.open(player, this.plugin);
             }
         }
     }
@@ -45,7 +45,7 @@ public class blockListener implements Listener {
     public void onInventoryClick(InventoryClickEvent e) {
         Player player = (Player) e.getWhoClicked();
 
-        String response = new APIRequest().sendGETRequest("http://api.carbonnetwork.net/players/find/?query=" + player.getName());
+        String response = new APIRequest(this.plugin).sendGETRequest("http://api.carbonnetwork.net/players/find/?query=" + player.getName());
         if (response.startsWith("{")) {
             JSONObject json = new JSONObject(response);
             JSONArray data = json.getJSONArray("data");
@@ -63,13 +63,13 @@ public class blockListener implements Listener {
                 } else if (clickedItem != null && clickedItem.isSimilar(BankGUI.closeItem)) {
                     player.closeInventory();
                 } else if (clickedItem != null && clickedItem.isSimilar(BankGUI.withdrawItem)) {
-                    WithdrawGUI.open(player);
+                    WithdrawGUI.open(player, this.plugin);
                 } else if (clickedItem != null && clickedItem.isSimilar(BankGUI.depositItem)) {
-                    DepositGUI.open(player);
+                    DepositGUI.open(player, this.plugin);
                 } else if (clickedItem != null && clickedItem.isSimilar(DepositGUI.returnItem)) {
-                    BankGUI.open(player);
+                    BankGUI.open(player, this.plugin);
                 } else if (clickedItem != null && clickedItem.isSimilar(WithdrawGUI.returnItem)) {
-                    BankGUI.open(player);
+                    BankGUI.open(player, this.plugin);
                 } else if (clickedItem != null && clickedItem.isSimilar(DepositGUI.everythingItem)) {
                     int coinCount = countCoins1InInventory(player, 1) + 10 * countCoins10InInventory(player, 1) +
                             100 * countCoins100InInventory(player, 1) + 1000 * countCoins1000InInventory(player, 1) +
@@ -83,9 +83,14 @@ public class blockListener implements Listener {
                         String formattedCoinCount = formatter.format(coinCount);
 
                         // balance + money
-                        String moneydata = "{\"uuid\": \"" + playerUUID + "\", \"money\": \"" + money + "\"}";
+                        int newBalance = money + coinCount;
+                        String moneyData = "{\"uuid\": \"" + playerUUID + "\", \"money\": \"" + newBalance + "\"}";
                         String url = "http://api.carbonnetwork.net/players/setmoney/";
-                        int code = new APIRequest(this.plugin).sendPATCHRequest(url, moneydata);
+                        String updateMoney = new APIRequest(this.plugin).sendPATCHRequest(url, moneyData);
+
+                        // Implement a way to remove coins from inventory
+
+                        // Implement a way to refresh the GUI
                     }
 
                 } else e.setCancelled(true);
