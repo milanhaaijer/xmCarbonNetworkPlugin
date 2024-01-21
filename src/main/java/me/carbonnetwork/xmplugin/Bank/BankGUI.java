@@ -28,9 +28,9 @@ public class BankGUI implements Listener {
     public static ItemStack withdrawItem;
     public static ItemStack closeItem;
 
-    public static void open(Player player) {
+    public static void open(Player player, XmPlugin plugin) {
 
-        String response = new APIRequest(this.plugin).sendGETRequest("http://api.carbonnetwork.net/players/find/?query=" + player.getName());
+        String response = new APIRequest(plugin).sendGETRequest("http://api.carbonnetwork.net/players/find/?query=" + player.getName());
         if (response.startsWith("{")) {
             JSONObject json = new JSONObject(response);
             JSONArray data = json.getJSONArray("data");
