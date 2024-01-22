@@ -16,7 +16,7 @@ import java.util.List;
 public class SandwichGUI {
 
     private static final int returnItemID = 1;
-
+    private static final int confirmID = 1;
     private static final int wheatID = 1;
     public static ItemStack sandwich;
     public static ItemStack wheat;
@@ -77,6 +77,7 @@ public class SandwichGUI {
 
         wheatMeta.getPersistentDataContainer().set(getKey("wheatID"), PersistentDataType.INTEGER, wheatID);
         returnItemMeta.getPersistentDataContainer().set(getKey("returnItemID"), PersistentDataType.INTEGER, returnItemID);
+        confirmItemMeta.getPersistentDataContainer().set(getKey("confirmItemID"), PersistentDataType.INTEGER, confirmID);
 
         wheat.setItemMeta(wheatMeta);
         sandwich.setItemMeta(sandwichMeta);

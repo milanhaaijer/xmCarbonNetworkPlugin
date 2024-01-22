@@ -34,7 +34,7 @@ public class BankGUI implements Listener {
         if (response.startsWith("{")) {
             JSONObject json = new JSONObject(response);
             JSONArray data = json.getJSONArray("data");
-
+            
             int money = data.getJSONObject(0).getInt("money");
             DecimalFormat format = new DecimalFormat("#,###");
             String formattedmoney = format.format(money);

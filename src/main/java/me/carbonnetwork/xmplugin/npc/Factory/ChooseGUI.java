@@ -12,6 +12,7 @@ import java.util.List;
 public class ChooseGUI {
 
     public static ItemStack sandwich;
+    public static ItemStack refinedDiamond;
     public static ItemStack fillerItem;
     public static ItemStack placeholderItem;
     public static ItemStack cancelItem;
@@ -19,36 +20,44 @@ public class ChooseGUI {
     public static void open(Player player) {
 
         List<String> sandwichLore = new ArrayList<>();
+        List<String> refinedDiamondLore = new ArrayList<>();
 
         Inventory chooseGUI;
 
         chooseGUI = Bukkit.createInventory(player, 54, "Fabricate");
 
         sandwich = new ItemStack(Material.BREAD);
+        refinedDiamond = new ItemStack(Material.DIAMOND);
         fillerItem = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
         placeholderItem = new ItemStack(Material.WHITE_STAINED_GLASS_PANE);
         cancelItem = new ItemStack(Material.BARRIER);
 
         ItemMeta sandwichMeta = sandwich.getItemMeta();
+        ItemMeta refinedDiamondMeta = refinedDiamond.getItemMeta();
         ItemMeta fillerItemMeta = fillerItem.getItemMeta();
         ItemMeta placeholderItemMeta = placeholderItem.getItemMeta();
         ItemMeta cancelItemMeta = cancelItem.getItemMeta();
 
         if (sandwichMeta == null) sandwichMeta = Bukkit.getItemFactory().getItemMeta(Material.BREAD);
+        if (refinedDiamondMeta == null) refinedDiamondMeta = Bukkit.getItemFactory().getItemMeta(Material.DIAMOND);
         if (cancelItemMeta == null) cancelItemMeta = Bukkit.getItemFactory().getItemMeta(Material.BARRIER);
         if (fillerItemMeta == null) fillerItemMeta = Bukkit.getItemFactory().getItemMeta(Material.BLACK_STAINED_GLASS_PANE);
         if (placeholderItemMeta == null) placeholderItemMeta = Bukkit.getItemFactory().getItemMeta(Material.WHITE_STAINED_GLASS_PANE);
 
         sandwichMeta.setDisplayName("§r§fSandwich");
+        refinedDiamondMeta.setDisplayName("§bRefined Diamond");
         cancelItemMeta.setDisplayName("§cClose");
         fillerItemMeta.setDisplayName(" ");
         placeholderItemMeta.setDisplayName(" ");
 
         sandwichLore.add("§7Requires 64 Wheat");
+        refinedDiamondLore.add("§7Requires 160 Diamonds");
 
         sandwichMeta.setLore(sandwichLore);
+        refinedDiamondMeta.setLore(refinedDiamondLore);
 
         sandwich.setItemMeta(sandwichMeta);
+        refinedDiamond.setItemMeta(refinedDiamondMeta);
         cancelItem.setItemMeta(cancelItemMeta);
         fillerItem.setItemMeta(fillerItemMeta);
         placeholderItem.setItemMeta(placeholderItemMeta);
@@ -72,6 +81,7 @@ public class ChooseGUI {
 
         chooseGUI.setItem(49, cancelItem);
         chooseGUI.setItem(10, sandwich);
+        chooseGUI.setItem(11, refinedDiamond);
 
         player.openInventory(chooseGUI);
     }

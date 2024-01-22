@@ -1,5 +1,6 @@
 package me.carbonnetwork.xmplugin.npc.Factory;
 
+import me.carbonnetwork.xmplugin.npc.Factory.items.RefinedDiamondGUI;
 import me.carbonnetwork.xmplugin.npc.Factory.items.SandwichGUI;
 import net.citizensnpcs.api.event.NPCRightClickEvent;
 import net.citizensnpcs.api.npc.NPC;
@@ -31,6 +32,9 @@ public class NPCListener implements Listener {
         }
         else if (clickedItem != null && clickedItem.isSimilar(ChooseGUI.sandwich)) {
             SandwichGUI.open(player);
+        }
+        else if (clickedItem != null && clickedItem.isSimilar(ChooseGUI.refinedDiamond)) {
+            RefinedDiamondGUI.open(player);
         }
         else if (clickedItem != null && clickedItem.isSimilar(ChooseGUI.cancelItem)) {
             player.closeInventory();
@@ -70,7 +74,40 @@ public class NPCListener implements Listener {
                 ItemStack wheatStack = new ItemStack(Material.WHEAT, 64);
                 player.getInventory().removeItem(wheatStack);
                 player.getInventory().addItem(SandwichGUI.sandwich);
+                player.playSound(player.getLocation(), "entity.experience_orb.pickup", 1.0f, 1.0f);
             }
+        }
+        else if (clickedItem != null && clickedItem.isSimilar(RefinedDiamondGUI.refinedDiamond)) {
+            e.setCancelled(true);
+        }
+        else if (clickedItem != null && clickedItem.isSimilar(RefinedDiamondGUI.diamondStack)) {
+            e.setCancelled(true);
+        }
+        else if (clickedItem != null && clickedItem.isSimilar(RefinedDiamondGUI.diamondHalfStack)) {
+            e.setCancelled(true);
+        }
+        else if (clickedItem != null && clickedItem.isSimilar(RefinedDiamondGUI.confirmItem)) {
+            int diamondCount = itemCounter.countDiamondInInventory(player,1);
+
+            if (diamondCount < 160) {
+                e.setCancelled(true);
+                player.playSound(player.getLocation(), "item.shield.block", 1.0f, 1.0f);
+                player.sendMessage("§cYou don't have the required materials.");
+            }
+            else if (diamondCount >= 160) {
+                e.setCancelled(true);
+
+                ItemStack diamondRequired = new ItemStack(Material.DIAMOND, 160);
+                player.getInventory().removeItem(diamondRequired);
+                player.getInventory().addItem(RefinedDiamondGUI.refinedDiamond);
+                player.playSound(player.getLocation(), "entity.experience_orb.pickup", 1.0f, 1.0f);
+            }
+        }
+        else if (clickedItem != null && clickedItem.isSimilar(RefinedDiamondGUI.infoItem)) {
+            e.setCancelled(true);
+        }
+        else if (clickedItem != null && clickedItem.isSimilar(RefinedDiamondGUI.returnItem)) {
+            ChooseGUI.open(player);
         }
     }
 

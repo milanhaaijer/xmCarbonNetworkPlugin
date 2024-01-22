@@ -1,12 +1,12 @@
 me\carbonnetwork\xmplugin\commands\FeedCommand.class
 me\carbonnetwork\xmplugin\Bank\blockListener.class
-me\carbonnetwork\xmplugin\customFood\sandwich.class
 me\carbonnetwork\xmplugin\commands\moneycommands\givePlayerCoins1000.class
 me\carbonnetwork\xmplugin\npc\NPCdusdavid.class
 me\carbonnetwork\xmplugin\commands\CommandKit.class
 me\carbonnetwork\xmplugin\commands\moneycommands\givePlayerCoins100.class
 me\carbonnetwork\xmplugin\npc\Factory\NPCListener.class
 me\carbonnetwork\xmplugin\npc\RemoveNPCCommand.class
+me\carbonnetwork\xmplugin\npc\Factory\items\RefinedDiamondGUI.class
 me\carbonnetwork\xmplugin\recipes\DragonEgg.class
 me\carbonnetwork\xmplugin\commands\ChatColorCommand.class
 me\carbonnetwork\xmplugin\money\customMoney.class
@@ -20,10 +20,10 @@ me\carbonnetwork\xmplugin\Bank\WithdrawGUI.class
 me\carbonnetwork\xmplugin\commands\ChatColorCommand$1.class
 me\carbonnetwork\xmplugin\npc\Factory\itemCounter.class
 me\carbonnetwork\xmplugin\Bank\coinsCounter.class
-me\carbonnetwork\xmplugin\npc\Factory\SandwichGUI.class
 me\carbonnetwork\xmplugin\commands\moneycommands\givePlayerCoins100000.class
 me\carbonnetwork\xmplugin\commands\moneycommands\givePlayerCoins1000000.class
 me\carbonnetwork\xmplugin\commands\moneycommands\givePlayerCoins1.class
+me\carbonnetwork\xmplugin\npc\Factory\items\SandwichGUI.class
 me\carbonnetwork\xmplugin\npc\NPCEnzoKnol.class
 me\carbonnetwork\xmplugin\Bank\BankGUI.class
 me\carbonnetwork\xmplugin\Bank\DepositGUI.class
