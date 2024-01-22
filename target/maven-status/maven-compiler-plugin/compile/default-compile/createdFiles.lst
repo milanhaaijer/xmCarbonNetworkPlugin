@@ -1,5 +1,6 @@
 me\carbonnetwork\xmplugin\commands\FeedCommand.class
 me\carbonnetwork\xmplugin\Bank\blockListener.class
+me\carbonnetwork\xmplugin\customFood\sandwich.class
 me\carbonnetwork\xmplugin\commands\moneycommands\givePlayerCoins1000.class
 me\carbonnetwork\xmplugin\npc\NPCdusdavid.class
 me\carbonnetwork\xmplugin\commands\CommandKit.class
@@ -17,6 +18,7 @@ me\carbonnetwork\xmplugin\npc\Factory\ChooseGUI.class
 me\carbonnetwork\xmplugin\npc\SpawnNPCCommand.class
 me\carbonnetwork\xmplugin\Bank\WithdrawGUI.class
 me\carbonnetwork\xmplugin\commands\ChatColorCommand$1.class
+me\carbonnetwork\xmplugin\npc\Factory\itemCounter.class
 me\carbonnetwork\xmplugin\Bank\coinsCounter.class
 me\carbonnetwork\xmplugin\npc\Factory\SandwichGUI.class
 me\carbonnetwork\xmplugin\commands\moneycommands\givePlayerCoins100000.class

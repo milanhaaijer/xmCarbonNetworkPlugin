@@ -1,7 +1,9 @@
 package me.carbonnetwork.xmplugin.npc.Factory;
 
+import me.carbonnetwork.xmplugin.npc.Factory.items.SandwichGUI;
 import net.citizensnpcs.api.event.NPCRightClickEvent;
 import net.citizensnpcs.api.npc.NPC;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -30,10 +32,46 @@ public class NPCListener implements Listener {
         else if (clickedItem != null && clickedItem.isSimilar(ChooseGUI.sandwich)) {
             SandwichGUI.open(player);
         }
+        else if (clickedItem != null && clickedItem.isSimilar(ChooseGUI.cancelItem)) {
+            player.closeInventory();
+        }
+        else if (clickedItem != null && clickedItem.isSimilar(ChooseGUI.placeholderItem)) {
+            e.setCancelled(true);
+        }
+        else if (clickedItem != null && clickedItem.isSimilar(SandwichGUI.infoItem)) {
+            e.setCancelled(true);
+        }
         else if (clickedItem != null && clickedItem.isSimilar(SandwichGUI.returnItem)) {
             ChooseGUI.open(player);
         }
+        else if (clickedItem != null && clickedItem.isSimilar(SandwichGUI.cancelItem)) {
+            e.setCancelled(true);
+        }
+        else if (clickedItem != null && clickedItem.isSimilar(SandwichGUI.sandwich)) {
+            e.setCancelled(true);
+        }
+        else if (clickedItem != null && clickedItem.isSimilar(SandwichGUI.wheat)) {
+            e.setCancelled(true);
+        }
+        else if (clickedItem != null && clickedItem.isSimilar(SandwichGUI.fillerItem)) {
+            e.setCancelled(true);
+        }
+        else if (clickedItem != null && clickedItem.isSimilar(SandwichGUI.confirmItem)) {
+            int wheatcount = itemCounter.countWheatInInventory(player, 1);
 
+            if (wheatcount < 64) {
+                e.setCancelled(true);
+                player.playSound(player.getLocation(), "item.shield.block", 1.0f, 1.0f);
+                player.sendMessage("§cYou don't have the required materials.");
+            }
+            else if (wheatcount >= 64) {
+                e.setCancelled(true);
+
+                ItemStack wheatStack = new ItemStack(Material.WHEAT, 64);
+                player.getInventory().removeItem(wheatStack);
+                player.getInventory().addItem(SandwichGUI.sandwich);
+            }
+        }
     }
 
 }

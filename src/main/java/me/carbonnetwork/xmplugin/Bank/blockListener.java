@@ -2,7 +2,6 @@ package me.carbonnetwork.xmplugin.Bank;
 
 import me.carbonnetwork.xmplugin.XmPlugin;
 import me.carbonnetwork.xmplugin.api.APIRequest;
-import org.bukkit.EntityEffect;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -10,7 +9,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.player.PlayerAnimationEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
@@ -68,7 +66,7 @@ public class blockListener implements Listener {
                 } else if (clickedItem != null && clickedItem.isSimilar(BankGUI.withdrawItem)) {
                     WithdrawGUI.open(player, this.plugin);
                 } else if (clickedItem != null && clickedItem.isSimilar(BankGUI.depositItem)) {
-                    bankGUI.openDepositGUI();
+                    DepositGUI.open(player, this.plugin);
                 } else if (clickedItem != null && clickedItem.isSimilar(DepositGUI.returnItem)) {
                     BankGUI.open(player, this.plugin);
                 } else if (clickedItem != null && clickedItem.isSimilar(WithdrawGUI.returnItem)) {

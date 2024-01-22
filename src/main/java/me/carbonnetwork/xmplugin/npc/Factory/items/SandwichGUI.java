@@ -1,4 +1,4 @@
-package me.carbonnetwork.xmplugin.npc.Factory;
+package me.carbonnetwork.xmplugin.npc.Factory.items;
 
 import me.carbonnetwork.xmplugin.XmPlugin;
 import org.bukkit.Bukkit;
@@ -17,7 +17,9 @@ public class SandwichGUI {
 
     private static final int returnItemID = 1;
 
+    private static final int wheatID = 1;
     public static ItemStack sandwich;
+    public static ItemStack wheat;
     public static ItemStack returnItem;
     public static ItemStack fillerItem;
     public static ItemStack cancelItem;
@@ -25,8 +27,6 @@ public class SandwichGUI {
     public static ItemStack confirmItem;
 
     public static void open(Player player) {
-
-        ItemStack wheat;
 
         List<String> returnItemLore = new ArrayList<>();
         List<String> infoItemLore = new ArrayList<>();
@@ -43,6 +43,7 @@ public class SandwichGUI {
         infoItem = new ItemStack(Material.LAVA_BUCKET);
         confirmItem = new ItemStack(Material.LIME_TERRACOTTA);
 
+        ItemMeta wheatMeta = wheat.getItemMeta();
         ItemMeta sandwichMeta = sandwich.getItemMeta();
         ItemMeta fillerItemMeta = fillerItem.getItemMeta();
         ItemMeta cancelItemMeta = cancelItem.getItemMeta();
@@ -50,6 +51,7 @@ public class SandwichGUI {
         ItemMeta infoItemMeta = infoItem.getItemMeta();
         ItemMeta confirmItemMeta = confirmItem.getItemMeta();
 
+        if (wheatMeta == null) wheatMeta = Bukkit.getItemFactory().getItemMeta(Material.WHEAT);
         if (sandwichMeta == null) sandwichMeta = Bukkit.getItemFactory().getItemMeta(Material.BREAD);
         if (cancelItemMeta == null) cancelItemMeta = Bukkit.getItemFactory().getItemMeta(Material.BARRIER);
         if (fillerItemMeta == null) fillerItemMeta = Bukkit.getItemFactory().getItemMeta(Material.BLACK_STAINED_GLASS_PANE);
@@ -73,8 +75,10 @@ public class SandwichGUI {
         infoItemMeta.setLore(infoItemLore);
         confirmItemMeta.setLore(confirmItemLore);
 
+        wheatMeta.getPersistentDataContainer().set(getKey("wheatID"), PersistentDataType.INTEGER, wheatID);
         returnItemMeta.getPersistentDataContainer().set(getKey("returnItemID"), PersistentDataType.INTEGER, returnItemID);
 
+        wheat.setItemMeta(wheatMeta);
         sandwich.setItemMeta(sandwichMeta);
         fillerItem.setItemMeta(fillerItemMeta);
         cancelItem.setItemMeta(cancelItemMeta);
