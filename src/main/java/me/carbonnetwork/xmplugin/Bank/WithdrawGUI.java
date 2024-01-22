@@ -56,7 +56,7 @@ public class WithdrawGUI implements Listener {
             specificItemMeta.setDisplayName("§aSpecific amount");
             returnItemMeta.setDisplayName("§aGo back");
 
-            everythingItemMeta.setLore(Arrays.asList("§7Current balance: §6" + formattedmoney));
+            everythingItemMeta.setLore(Arrays.asList("", "§7Current balance: §6" + formattedmoney, "", "§eClick to withdraw coins!"));
 
             returnItemLore.add("§7To Personal Bank Account");
 

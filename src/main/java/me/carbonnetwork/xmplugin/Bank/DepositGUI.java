@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static me.carbonnetwork.xmplugin.Bank.coinsCounter.*;
+
 public class DepositGUI implements Listener {
 
     public static ItemStack everythingItem;
@@ -33,7 +35,6 @@ public class DepositGUI implements Listener {
             int money = data.getJSONObject(0).getInt("money");
             DecimalFormat format = new DecimalFormat("#,###");
             String formattedmoney = format.format(money);
-
 
             List<String> returnItemLore = new ArrayList<>();
 
@@ -57,7 +58,13 @@ public class DepositGUI implements Listener {
             specificItemMeta.setDisplayName("§aSpecific amount");
             returnItemMeta.setDisplayName("§aGo back");
 
-            everythingItemMeta.setLore(Arrays.asList("§7Current balance: §6" + formattedmoney));
+            int coinCount = countCoins1InInventory(player, 1) + 10 * countCoins10InInventory(player, 1) +
+                    100 * countCoins100InInventory(player, 1) + 1000 * countCoins1000InInventory(player, 1) +
+                    10000 * countCoins10000InInventory(player, 1) + 100000 * countCoins100000InInventory(player, 1) +
+                    1000000 * countCoins1000000InInventory(player, 1);
+            String formattedCoinCount = format.format(coinCount);
+
+            everythingItemMeta.setLore(Arrays.asList("", "§7Current balance: §6" + formattedmoney, "§7Amount to deposit: §6" + formattedCoinCount, "", "§eClick to deposit coins!"));
 
             returnItemLore.add("§7To Personal Bank Account");
 

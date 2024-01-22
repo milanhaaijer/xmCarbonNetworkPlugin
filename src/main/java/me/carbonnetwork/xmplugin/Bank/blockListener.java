@@ -2,6 +2,7 @@ package me.carbonnetwork.xmplugin.Bank;
 
 import me.carbonnetwork.xmplugin.XmPlugin;
 import me.carbonnetwork.xmplugin.api.APIRequest;
+import org.bukkit.EntityEffect;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -9,7 +10,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerAnimationEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -32,7 +35,7 @@ public class blockListener implements Listener {
         if (e.getAction() == Action.RIGHT_CLICK_BLOCK) {
             Block clickedBlock = e.getClickedBlock();
 
-            if (clickedBlock != null && clickedBlock.getType().equals(Material.PURPUR_STAIRS)) {
+            if (clickedBlock != null && clickedBlock.getType().equals(Material.PURPUR_STAIRS) && e.getHand() == EquipmentSlot.HAND) {
                 e.setCancelled(true);
 
                 Player player = e.getPlayer();
@@ -65,7 +68,7 @@ public class blockListener implements Listener {
                 } else if (clickedItem != null && clickedItem.isSimilar(BankGUI.withdrawItem)) {
                     WithdrawGUI.open(player, this.plugin);
                 } else if (clickedItem != null && clickedItem.isSimilar(BankGUI.depositItem)) {
-                    DepositGUI.open(player, this.plugin);
+                    bankGUI.openDepositGUI();
                 } else if (clickedItem != null && clickedItem.isSimilar(DepositGUI.returnItem)) {
                     BankGUI.open(player, this.plugin);
                 } else if (clickedItem != null && clickedItem.isSimilar(WithdrawGUI.returnItem)) {
@@ -76,9 +79,9 @@ public class blockListener implements Listener {
                             10000 * countCoins10000InInventory(player, 1) + 100000 * countCoins100000InInventory(player, 1) +
                             1000000 * countCoins1000000InInventory(player, 1);
                     e.setCancelled(true);
-                    if (coinCount == 1) {
-                        player.sendMessage("You have 1 coin in your inventory");
-                    } else if (coinCount != 1 && coinCount > 0) {
+
+
+                    if (coinCount > 0) {
                         DecimalFormat formatter = new DecimalFormat("#,###");
                         String formattedCoinCount = formatter.format(coinCount);
 
@@ -90,7 +93,13 @@ public class blockListener implements Listener {
 
                         // Implement a way to remove coins from inventory
 
+
                         // Implement a way to refresh the GUI
+                        player.closeInventory();
+                    } else if (coinCount == 0) {
+                        player.playSound(player.getLocation(), "item.shield.block", 1.0f, 1.0f);
+                        player.sendMessage("§cYou don't have any coins in your inventory");
+                        player.closeInventory();
                     }
 
                 } else e.setCancelled(true);
@@ -100,4 +109,5 @@ public class blockListener implements Listener {
         }
 
     }
+
 }
