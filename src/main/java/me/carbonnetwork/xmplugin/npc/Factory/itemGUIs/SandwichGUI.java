@@ -1,4 +1,4 @@
-package me.carbonnetwork.xmplugin.npc.Factory.items;
+package me.carbonnetwork.xmplugin.npc.Factory.itemGUIs;
 
 import me.carbonnetwork.xmplugin.XmPlugin;
 import org.bukkit.Bukkit;

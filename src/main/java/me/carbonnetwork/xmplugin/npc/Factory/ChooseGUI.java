@@ -2,8 +2,10 @@ package me.carbonnetwork.xmplugin.npc.Factory;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -32,6 +34,8 @@ public class ChooseGUI {
         placeholderItem = new ItemStack(Material.WHITE_STAINED_GLASS_PANE);
         cancelItem = new ItemStack(Material.BARRIER);
 
+        refinedDiamond.addUnsafeEnchantment(Enchantment.SILK_TOUCH,1);
+
         ItemMeta sandwichMeta = sandwich.getItemMeta();
         ItemMeta refinedDiamondMeta = refinedDiamond.getItemMeta();
         ItemMeta fillerItemMeta = fillerItem.getItemMeta();
@@ -55,6 +59,8 @@ public class ChooseGUI {
 
         sandwichMeta.setLore(sandwichLore);
         refinedDiamondMeta.setLore(refinedDiamondLore);
+
+        refinedDiamondMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
         sandwich.setItemMeta(sandwichMeta);
         refinedDiamond.setItemMeta(refinedDiamondMeta);

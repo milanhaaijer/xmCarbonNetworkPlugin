@@ -1,4 +1,4 @@
-package me.carbonnetwork.xmplugin.npc.Factory.items;
+package me.carbonnetwork.xmplugin.npc.Factory.itemGUIs;
 
 import me.carbonnetwork.xmplugin.XmPlugin;
 import me.carbonnetwork.xmplugin.npc.Factory.ChooseGUI;
@@ -8,6 +8,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
@@ -44,6 +45,8 @@ public class RefinedDiamondGUI {
         returnItem = new ItemStack(Material.ARROW);
         infoItem = new ItemStack(Material.LAVA_BUCKET);
 
+        refinedDiamond.addUnsafeEnchantment(Enchantment.SILK_TOUCH,1);
+
         ItemMeta diamondStackMeta = diamondStack.getItemMeta();
         ItemMeta diamondHalfStackMeta = diamondHalfStack.getItemMeta();
         ItemMeta refinedDiamondMeta = refinedDiamond.getItemMeta();
@@ -62,7 +65,7 @@ public class RefinedDiamondGUI {
         returnItemMeta.setDisplayName("§aGo Back");
         infoItemMeta.setDisplayName("§aFabricate");
 
-        refinedDiamond.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL,1);
+        refinedDiamondMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
         returnItemLore.add("§7To Item Fabrication");
         infoItemLore.add("§f<-- §6Required items");
