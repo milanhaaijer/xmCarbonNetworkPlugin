@@ -37,10 +37,13 @@ public class PINListener implements Listener {
                         UUID pinSetterUUID = UUID.fromString(carpet.getMetadata("pinSetter").get(0).asString());
 
                         if (clicker.getInventory().getItemInMainHand().getType() == Material.LIME_DYE) {
-                            plugin.getServer().getPlayer(pinSetterUUID).sendMessage("§aPin for " + pinValue + "successful!");
-                            clicker.sendMessage("§aPin for " + pinValue + " successful!");
+                            plugin.getServer().getPlayer(pinSetterUUID).sendMessage("§dPin for " + pinValue + " successful!");
+                            clicker.sendMessage("§dPin for " + pinValue + " successful!");
+
+                            carpet.removeMetadata("pinSetter", plugin);
+                            carpet.removeMetadata("pinValue", plugin);
                         } else {
-                            clicker.sendMessage("Please use your payment item.");
+                            clicker.sendMessage("§aPlease use your payment item.");
                         }
 
                     }

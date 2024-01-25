@@ -78,7 +78,6 @@ public class blockListener implements Listener {
                             1000000 * countCoins1000000InInventory(player, 1);
                     e.setCancelled(true);
 
-
                     if (coinCount > 0) {
                         DecimalFormat formatter = new DecimalFormat("#,###");
                         String formattedCoinCount = formatter.format(coinCount);
