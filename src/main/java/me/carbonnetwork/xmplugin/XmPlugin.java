@@ -5,7 +5,12 @@ import me.carbonnetwork.xmplugin.api.APIRequest;
 import me.carbonnetwork.xmplugin.commands.moneycommands.*;
 import me.carbonnetwork.xmplugin.npc.*;
 import me.carbonnetwork.xmplugin.npc.Factory.NPCListener;
+import me.carbonnetwork.xmplugin.pin.PINCommand;
+import me.carbonnetwork.xmplugin.pin.PINListener;
 import org.bukkit.NamespacedKey;
+import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
+import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.java.JavaPlugin;
 import me.carbonnetwork.xmplugin.recipes.*;
 import me.carbonnetwork.xmplugin.commands.FeedCommand;
@@ -14,6 +19,7 @@ import me.carbonnetwork.xmplugin.commands.ChatColorCommand;
 
 public final class XmPlugin extends JavaPlugin {
 
+    private Player setter;
     public String APIToken = null;
 
     @Override
@@ -50,6 +56,10 @@ public final class XmPlugin extends JavaPlugin {
 
         new APIRequest(this).login();
 
+        // Pin system:
+        getCommand("pin").setExecutor(new PINCommand(this));
+        getServer().getPluginManager().registerEvents(new PINListener(this), this);
+
     }
 
     @Override
@@ -66,4 +76,11 @@ public final class XmPlugin extends JavaPlugin {
         this.APIToken = APIToken;
     }
 
+
+    public void setPinValue(Block carpet, int pinValue, Player setter) {
+        carpet.setMetadata("pinValue", new FixedMetadataValue(this, pinValue));
+        if (setter != null) {
+            carpet.setMetadata("pinSetter", new FixedMetadataValue(this, setter.getUniqueId()));
+        }
+    }
 }

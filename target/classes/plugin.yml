@@ -1,5 +1,5 @@
 name: xmPlugin
-version: '0.1.0.0-dev+b282'
+version: '0.1.0.0-dev+b287'
 main: me.carbonnetwork.xmplugin.XmPlugin
 api-version: '1.16'
 depend: [Citizens]
@@ -40,4 +40,7 @@ commands:
     usage: /<command>
   givecoins1000000:
     description: Give player 1000000 coins cash
+    usage: /<command>
+  pin:
+    description: pin command
     usage: /<command>

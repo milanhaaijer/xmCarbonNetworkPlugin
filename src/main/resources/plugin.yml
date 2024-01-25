@@ -41,3 +41,6 @@ commands:
   givecoins1000000:
     description: Give player 1000000 coins cash
     usage: /<command>
+  pin:
+    description: pin command
+    usage: /<command>
